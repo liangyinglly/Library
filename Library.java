@@ -93,10 +93,10 @@ public class Library {
 
                 if(x == -1){ System.exit(0);} // 左上角的叉叉
 
-                for(User recent : users){ //for 迴圈判斷帳號是否已經存在
-                    if( acc.getText().equals( recent.getAccount() ) == true ){
-                        JOptionPane.showMessageDialog(null, "The account are already exsit");
-                        continue;
+                for(User user : users){ //for 迴圈判斷帳號是否已經存在
+                    if( acc.getText().equals( user.getAccount() ) == true ){
+                        JOptionPane.showMessageDialog(null, "The account are already exist");
+                        break;
                     }
                 }
                 
