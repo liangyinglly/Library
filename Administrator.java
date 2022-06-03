@@ -169,11 +169,11 @@ public class Administrator extends User {
 
                 JOptionPane.showMessageDialog(null, "Modify successfully\nGo back to Main Page");
                 mainPage_administrator();
-                JOptionPane.showMessageDialog(null, "Erroe\nYou are at modifyBook-3");
+                JOptionPane.showMessageDialog(null, "Error\nYou are at modifyBook-3");
             }
             else{ //取消更改
                 mainPage_administrator();
-                JOptionPane.showMessageDialog(null, "Erroe\nYou are at modifyBook-4");
+                JOptionPane.showMessageDialog(null, "Error\nYou are at modifyBook-4");
                 }           
             }
         
