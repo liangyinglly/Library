@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.io.*;
 import java.util.*;
+import java.awt.*;
 
 
 public class Library {
@@ -21,12 +22,32 @@ public class Library {
     //Constructor
     public Library()throws IOException{
         
+        ImageIcon icon = new ImageIcon("d.jpg");
         String[] options = {"Exit","Administrator", "Student", "Teacher", "Staff"};
        
-        identity = JOptionPane.showOptionDialog(null, 
-                                        "Returns the position of your choice on the array",
-                                            "Click a button",
-                                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        String x = (String) JOptionPane.showInputDialog(
+                null,
+                "",
+                "Identity",
+                JOptionPane.QUESTION_MESSAGE,
+                icon,
+                options,
+                options[2]);
+        switch(x){
+            case "Administrator":
+                identity = 1;
+                break;
+            case "Student":
+                identity = 2;
+                break;
+            case "Teacher":
+                identity = 3;
+                break;
+            case "Staff":
+                identity = 4;
+                break;
+        }
+        
 
         db_import_book();
         // books.add(new Book("Kinder", "Admin", "Admin","available"));
@@ -51,9 +72,6 @@ public class Library {
             books.add( new Book(temps[0], temps[1], temps[2], temps[3]));
         }
     }
-
-
-
 
 
 

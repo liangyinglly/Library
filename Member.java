@@ -150,8 +150,11 @@ public class Member extends User{
 
 
             target = JOptionPane.showInputDialog(null, "Enter book's title" );
-            
-            if (target == null){System.exit(0);}// 左上角的叉叉
+            System.out.println(target);
+            if (target == null){
+                mainPage_member();
+                JOptionPane.showMessageDialog(null, "Error\nYou are at searchBook-4");
+            }// 左上角的叉叉
                        
             found = search(target);
 
@@ -182,7 +185,7 @@ public class Member extends User{
                 }
 
                     x = JOptionPane.showOptionDialog(null, 
-                                            "Do you want to borrow the book?",
+                                            "Do you want to borrow the book?"+"\nTitle: " + found.getTitle()+"\nAuthor: " + found.getAuthor()+"\nPublisher: " + found.getPublisher(),
                                                 "Search",
                                                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options_search, options_search[0]);
                     if( x == 0){ // 要借書
