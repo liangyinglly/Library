@@ -25,7 +25,6 @@ public class Member extends User{
 
 
 
-
     //mainPage_member
     public void mainPage_member(){
         String options [] = {"Borrow", "Return", "Search", "Information"};
