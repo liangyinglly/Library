@@ -23,6 +23,7 @@ public class Member extends User{
     }// End Constructo
     
 
+    
 
 
     //mainPage_member
