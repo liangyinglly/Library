@@ -5,7 +5,8 @@ public class Student extends Member {
         setFine(100);
         setLimit_book(1);
         setDue_date(14);
-        
+        this.member_type = 1;
+
     }
 
 

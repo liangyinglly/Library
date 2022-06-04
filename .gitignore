@@ -1,2 +1,4 @@
 tempCodeRunnerFile.*
 *.class
+.project
+.gitignore

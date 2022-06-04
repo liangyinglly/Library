@@ -1,14 +1,10 @@
 import java.util.ArrayList;
 import javax.swing.*;
 public class Administrator extends User {
-
-    private ArrayList <Book> books;
-
-
     // Constructor
-    public Administrator(String name, String account, String password) {  
+    public Administrator(String name, String account, String password) {
         super(name, account, password);
-        books = Library.books;
+        this.member_type=0;
     }// Constructor
 
 
@@ -17,10 +13,10 @@ public class Administrator extends User {
 
 
     // mainPage_administrator
-    public void mainPage_administrator(){
+    public void mainPage(){
         String options [] = {"Add Book", "Modify Book", "Delete Book", "Information"};
 
-        int function = JOptionPane.showOptionDialog(null, 
+        int function = JOptionPane.showOptionDialog(null,
                                         "Welcome " + getName(),
                                         "Main Page",
                                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]
@@ -50,7 +46,7 @@ public class Administrator extends User {
             case 3:
                 break;
         }
-     } // End go_to_function 
+     } // End go_to_function
 
 
 
@@ -66,17 +62,17 @@ public class Administrator extends User {
         int x;
         boolean exist = false;
         String options [] = {"Add", "Cancel"};
-        Object information[] = {"Please enter the information of the book.\n", 
+        Object information[] = {"Please enter the information of the book.\n",
                                 "title",title,
                                 "author", author,
                                 "publisher", publisher};
 
-        x = JOptionPane.showOptionDialog (null,information, 
+        x = JOptionPane.showOptionDialog (null,information,
         "登入",JOptionPane.DEFAULT_OPTION,1,null, options, options[0]) ;
 
         if(x == -1){System.exit(0);}
 
-        for (Book recent: books){
+        for (Book recent: Library.books){
             if(title.getText().equals(recent.getTitle())){
                 exist = true;
             }
@@ -84,18 +80,18 @@ public class Administrator extends User {
 
         if(exist == false){ // 書不存在
             if(x == 0){ // add
-                books.add( new Book( title.getText() , author.getText(), publisher.getText() , "available") );
+                Library.books.add( new Book( title.getText() , author.getText(), publisher.getText() , "available") );
                 JOptionPane.showMessageDialog(null, "Add successfully\nGoing back to Main Page");
-                mainPage_administrator();
+                mainPage();
                 JOptionPane.showMessageDialog(null, "Error\nYou are at addBook-1");
             }
             else if(x == 1){ // cancel add
-                mainPage_administrator();
+                mainPage();
                 JOptionPane.showMessageDialog(null, "Error\nYou are at addBook-2");
             }
         }
         else{  // 書已經存在
-            x = JOptionPane.showOptionDialog (null,"The book are already exist.\nKeep adding or Cancel.", 
+            x = JOptionPane.showOptionDialog (null,"The book are already exist.\nKeep adding or Cancel.",
             "登入",JOptionPane.DEFAULT_OPTION,1,null, options, options[0]) ;
 
             if(x == 0){ // add
@@ -103,12 +99,12 @@ public class Administrator extends User {
                 JOptionPane.showMessageDialog(null, "Error\nYou are at addBook-3");
             }
             else if (x == 1){ //cancel
-                mainPage_administrator();
+                mainPage();
                 JOptionPane.showMessageDialog(null, "Error\nYou are at addBook-4");
             }
             else{System.exit(0);}
         }
-        
+
 
     }// End addBook
 
@@ -118,7 +114,7 @@ public class Administrator extends User {
 
     // modifyBook
     public void modifyBook(){
-        
+
         String input;
         Book temp = null;
         String options[] = {"Modify", "Cancel"};
@@ -132,7 +128,7 @@ public class Administrator extends User {
                                 "Publisher",publisher};
 
         input = JOptionPane.showInputDialog(null, "What book do you want to make change");
-        for (Book recent : books){
+        for (Book recent : Library.books){
             if(input.equals(recent.getTitle())){
                 temp = recent;
                 break;
@@ -140,7 +136,7 @@ public class Administrator extends User {
         }
         if(temp == null){ // 沒找到書
 
-            x = JOptionPane.showOptionDialog(null, 
+            x = JOptionPane.showOptionDialog(null,
                                         "The book doesn't exist.\ndo you still want to make change of the book or go back to main page",
                                             "Modify",
                                                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
@@ -149,7 +145,7 @@ public class Administrator extends User {
                 JOptionPane.showMessageDialog(null, "Erroe\nYou are at modifyBook-1");
             }
             else if ( x == 1){ // back to main page
-                mainPage_administrator();
+                mainPage();
                 JOptionPane.showMessageDialog(null, "Erroe\nYou are at modifyBook-2");
             }
             else{System.exit(0);}
@@ -161,22 +157,22 @@ public class Administrator extends User {
 
             x = JOptionPane.showOptionDialog (null,information, // 輸入帳號密碼
             "登入",JOptionPane.DEFAULT_OPTION,1,null, options, options[0]) ;
-            
+
             if(x == 0){ //確認更改
                 temp.setTitle(title.getText());
                 temp.setAuthor(author.getText());
                 temp.setPublisher(publisher.getText());
 
                 JOptionPane.showMessageDialog(null, "Modify successfully\nGo back to Main Page");
-                mainPage_administrator();
+                mainPage();
                 JOptionPane.showMessageDialog(null, "Error\nYou are at modifyBook-3");
             }
             else{ //取消更改
-                mainPage_administrator();
+                mainPage();
                 JOptionPane.showMessageDialog(null, "Error\nYou are at modifyBook-4");
-                }           
+                }
             }
-        
+
     } // End modyfyBook
 
 
@@ -192,21 +188,21 @@ public class Administrator extends User {
         Book temp = null;
         int x;
 
-        for (Book recent : books){
+        for (Book recent : Library.books){
             if(input.equals(recent.getTitle())){
                 temp = recent;
                 break;
             }
         }
-        
+
         if(temp != null){ // 書存在
-            books.remove( temp );
+            Library.books.remove( temp );
             JOptionPane.showMessageDialog(null, "Delete successfully\nGoing back to Main Page.");
-            mainPage_administrator();
+            mainPage();
             JOptionPane.showMessageDialog(null, "Error\nYou are at deleteBook-1");
         }
         else{ // 書不存在
-            x = JOptionPane.showOptionDialog(null, 
+            x = JOptionPane.showOptionDialog(null,
                                         "The book doesn't exist.\ndo you still want to delete book or go back to main page",
                                             "Modify",
                                                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
@@ -215,7 +211,7 @@ public class Administrator extends User {
                 JOptionPane.showMessageDialog(null, "Error\nYou are at deleteBook-2");
             }
             else if(x == 1){ // cancel
-                mainPage_administrator();
+                mainPage();
                 JOptionPane.showMessageDialog(null, "Error\nYou are at deleteBook-3");
             }
             else{System.exit(0);}
@@ -224,5 +220,5 @@ public class Administrator extends User {
     } // deleteBook
 
 
-    
+
 }

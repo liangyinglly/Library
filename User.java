@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.util.ArrayList;
-public class User {
+public abstract class User {
     private String name;
     private String account;
     private String password;
     private ArrayList <Book> books;
-  
+    public int member_type;
     //Constructor
     public User(String name, String account, String password) {
         setName(name);
@@ -23,7 +23,7 @@ public class User {
                 return recent;
             }
         }
-        
+
         return null;
     } // End Search
 
@@ -48,5 +48,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-        
+    public abstract void mainPage();
 }

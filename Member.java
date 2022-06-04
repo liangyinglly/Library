@@ -7,25 +7,22 @@ public class Member extends User{
     private int due_date;
     private int fine;
     protected  ArrayList<Book> borrowing;
-    protected ArrayList <Book> books;
-
 
     //Constructor
     public Member(String name, String account, String password) {
         super(name, account, password);
-        books = Library.books;
         borrowing = new ArrayList <Book>();
     }// End Constructo
-    
+
 
 
 
 
     //mainPage_member
-    public void mainPage_member(){
+    public void mainPage(){
         String options [] = {"Borrow", "Return", "Search", "Information"};
 
-        int input = JOptionPane.showOptionDialog(null, 
+        int input = JOptionPane.showOptionDialog(null,
                                         "Welcome " + getName(),
                                         "Main Page",
                                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]
@@ -64,29 +61,29 @@ public class Member extends User{
     // BorrowBook_parameter
     public void borrowBook_parameter(Book found){
 
-       
+
         if(check_limit_book() == false){ // 若借書數量已滿，回到 Main Page
             JOptionPane.showMessageDialog(null, "You reach your borrowing limit:" + limit_book+"\nGo back to main page.");
-            mainPage_member();
+            mainPage();
             JOptionPane.showMessageDialog(null, "Error\nYour are at borrowBook_parameter-1");
-        } 
-        
-        
-        
+        }
+
+
+
         borrowing.add( found );
         found.setBorrow_date(LocalDate.now());
         found.setReturn_date(LocalDate.now().plusDays(due_date));
         found.setStatus("lend");
         JOptionPane.showMessageDialog(null, "Borrow success\nYou should return the book by " + found.getReturn_date() + "\nGo back to Main Page");
 
-        mainPage_member();
+        mainPage();
         JOptionPane.showMessageDialog(null, "Error\nYour are at borrowBook_parameter-2");
     } // End BorrowBook_parameter
 
 
 
 
-    
+
 
 
 
@@ -114,12 +111,12 @@ public class Member extends User{
             temp.setStatus("available");
             borrowing.remove(temp);
             JOptionPane.showMessageDialog(null, "Return success\nGoing back to Main Page.");
-            mainPage_member();
+            mainPage();
             JOptionPane.showMessageDialog(null,"Error\nYou are at returnBook-1");
         }
         else if (did_borrow == false){
-            
-            x = JOptionPane.showOptionDialog(null, 
+
+            x = JOptionPane.showOptionDialog(null,
                                         "You didn't borrow the book\nDo you still want to return the book or go back to main page.",
                                             "Return book",
                                                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
@@ -130,11 +127,11 @@ public class Member extends User{
                 JOptionPane.showMessageDialog(null,"Error\nYou are at returnBook-2");
             }
             else if(x == 1){ // go back to main page
-                mainPage_member();
+                mainPage();
                 JOptionPane.showMessageDialog(null,"Error\nYou are at returnBook-3");
             }
 
-            
+
         }
 
     }   // End ReturnBook
@@ -152,15 +149,15 @@ public class Member extends User{
             target = JOptionPane.showInputDialog(null, "Enter book's title" );
             System.out.println(target);
             if (target == null){
-                mainPage_member();
+                mainPage();
                 JOptionPane.showMessageDialog(null, "Error\nYou are at searchBook-4");
             }// 左上角的叉叉
-                       
+
             found = search(target);
 
             if(found == null){ //沒找到書
-                
-                x = JOptionPane.showOptionDialog(null, 
+
+                x = JOptionPane.showOptionDialog(null,
                                             "The book doesn't exist.\nKeeping look?",
                                                 "Search",
                                                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options_not_found, options_not_found[0]);
@@ -168,23 +165,23 @@ public class Member extends User{
                     continue;
                 }
                 else if( x == 1){
-                    mainPage_member();
+                    mainPage();
                 }
                 else{ // 左上角的叉叉
                     System.exit(0);
-                }       
-            }    
+                }
+            }
 
 
             if ( found != null ){ //有找到書
 
                 if(found.getStatus().equals("lend")){ // 判斷書是否已借出
                     JOptionPane.showMessageDialog(null, "The book is not available now.\nGoing back to Main Page");
-                    mainPage_member();
+                    mainPage();
                     JOptionPane.showMessageDialog(null, "Error\nYou are at searchbook-3");
                 }
 
-                    x = JOptionPane.showOptionDialog(null, 
+                    x = JOptionPane.showOptionDialog(null,
                                             "Do you want to borrow the book?"+"\nTitle: " + found.getTitle()+"\nAuthor: " + found.getAuthor()+"\nPublisher: " + found.getPublisher(),
                                                 "Search",
                                                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options_search, options_search[0]);
@@ -194,16 +191,16 @@ public class Member extends User{
                         JOptionPane.showMessageDialog(null, "Error\nYou are at searchbook-1");
                     }
                     else if (x == 1){ // 不借書
-                        mainPage_member();
+                        mainPage();
                         JOptionPane.showMessageDialog(null, "Error\nYou are at searchbook-2");
                     }
                     else {System.exit(0);} //左上角的叉叉
-                    
+
                     break;
                 }
-                
-    
-            
+
+
+
         }
     } // End SearchBook
 
@@ -216,7 +213,7 @@ public class Member extends User{
         else {
             return false;
         }
-        
+
     }
 
 
@@ -236,7 +233,7 @@ public class Member extends User{
             output += recent.getTitle() + "\t\t\t\t\t\t\t\t\t" + recent.getReturn_date();
         }
         JOptionPane.showMessageDialog(null, output);
-        mainPage_member();
+        mainPage();
         JOptionPane.showMessageDialog(null, "Error\nYou are at Member's toString");
 
         } // End show_information
@@ -267,5 +264,5 @@ public class Member extends User{
     public int getDue_date(){
         return due_date;
     }// End Getter and Setter
-    
+
 }
