@@ -3,10 +3,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-<<<<<<< HEAD
 
-=======
->>>>>>> 37773e10744fb13f5cdbc229d64a6ede36246178
 
 public class Member extends User{
     private int limit_book;
