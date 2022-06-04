@@ -3,7 +3,10 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 37773e10744fb13f5cdbc229d64a6ede36246178
 
 public class Member extends User{
     private int limit_book;
@@ -13,6 +16,7 @@ public class Member extends User{
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     protected  ArrayList<Book> borrowing;
 
+
     //Constructor
     public Member(String name, String account, String password) {
         super(name, account, password);
@@ -20,7 +24,7 @@ public class Member extends User{
     }// End Constructo
 
 
-
+    
 
 
     //mainPage_member
@@ -116,7 +120,11 @@ public class Member extends User{
             temp.setStatus("available");
             borrowing.remove(temp);
             JOptionPane.showMessageDialog(null, "Return success\t"+dateTime.format(formatter)+"\nGoing back to Main Page.");
+<<<<<<< HEAD
             mainPage();
+=======
+            mainPage_member();
+>>>>>>> 37773e10744fb13f5cdbc229d64a6ede36246178
             JOptionPane.showMessageDialog(null,"Error\nYou are at returnBook-1");
         }
         else if (did_borrow == false){

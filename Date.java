@@ -3,11 +3,8 @@ import java.time.LocalDate;
 public class Date{
     private LocalDate borrow_date;
     private LocalDate return_date;
-
-
     
-
-
+    
     public LocalDate getBorrow_date() {
         return borrow_date;
     }
@@ -21,6 +18,5 @@ public class Date{
         this.return_date = return_date;
     }
 
-    
     
 }
