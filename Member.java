@@ -1,11 +1,16 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Member extends User{
     private int limit_book;
     private int due_date;
     private int fine;
+    private LocalDateTime dateTime = LocalDateTime.now();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     protected  ArrayList<Book> borrowing;
 
     //Constructor
@@ -110,7 +115,7 @@ public class Member extends User{
         if(did_borrow == true){
             temp.setStatus("available");
             borrowing.remove(temp);
-            JOptionPane.showMessageDialog(null, "Return success\nGoing back to Main Page.");
+            JOptionPane.showMessageDialog(null, "Return success\t"+dateTime.format(formatter)+"\nGoing back to Main Page.");
             mainPage();
             JOptionPane.showMessageDialog(null,"Error\nYou are at returnBook-1");
         }
