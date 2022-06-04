@@ -251,39 +251,33 @@ public class Library {
         BorderFactory.createEmptyBorder(0, 3, 0, 3)));
         sign_up.addActionListener(new ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent e) {
-                System.out.println("in a");
                 //加判斷
                 boolean CAcc = CheckAccount((String)acc.getText());
                 boolean CPw = CheckPassword(new String(pw.getPassword()));
-                System.out.println("in b");
                 if(CAcc==true && CPw==true){
-                    System.out.println("in d");
                     AddAccount(id,tf_name.getText(),acc.getText(),new String(pw.getPassword()));
                     create_signin_window();
-                    System.out.println("in e");
                 }
                 else if(CAcc == false){
                     System.out.println("帳號已存在！");
+                    //改看要跳什麼通知
                 }
                 else if(CPw == false){
                     System.out.println("密碼不符合格式！");
+                    //改看要跳什麼通知
                 }
-                System.out.printf("%s",comboBox.getSelectedItem());
-                System.out.println("in c");
         }});
         panel_right.add(sign_up);
         frame.setVisible(true);
         }
 
         public boolean CheckAccount(String acc) {
-            boolean b = true;
             for (User user : users){
                 if(acc.equals(user.getAccount())){
-                    b = false;
-                    break;
+                    return false;
                 }
             }
-            return b;
+            return true;
         }
         
         public boolean CheckPassword(String pw) {
