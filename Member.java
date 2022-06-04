@@ -118,7 +118,6 @@ public class Member extends User{
             borrowing.remove(temp);
             JOptionPane.showMessageDialog(null, "Return success\t"+dateTime.format(formatter)+"\nGoing back to Main Page.");
             mainPage();
-            mainPage_member();
             JOptionPane.showMessageDialog(null,"Error\nYou are at returnBook-1");
         }
         else if (did_borrow == false){
